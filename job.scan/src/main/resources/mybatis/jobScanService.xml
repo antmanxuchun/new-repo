@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="JobScanDao">
+    <!-- 查询url网址信息 -->
+	<select id="queryUrlInfos" parameterType="java.util.Map" resultType="hashMap">
+        select url_addr  as "urlAddr"
+               ,url_desc as "urlDesc"
+          from td_url_info
+    </select>
+    <!-- 查询城市信息 -->
+	<select id="queryCityInfos" parameterType="java.util.Map" resultType="hashMap">
+        select city_name as "cityName"
+               ,city_id  as "cityId"
+          from td_city_info
+    </select>
+    
+    <!-- 查询学历信息 -->
+	<select id="queryEduInfos" parameterType="java.util.Map" resultType="hashMap">
+        SELECT edu_id     AS "eduId"
+               ,edu_name  AS "eduName"
+          FROM td_edu_info
+    </select>
+    <!-- com.ai.job.scan.bean.JobInfo -->
+    <insert id="insertJobInfo" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="job_id" >
+        insert into td_job_info
+                     (
+                      publish_date
+                      ,salary_up
+                      ,salary_down
+                      ,job_addr_id
+                      ,edu_id
+                      ,job_exp_time
+                      ,job_detail
+                      ,job_request
+                      ,gongsi_name
+                      ,job_url
+                      ,gongsi_url
+                      ,scan_date
+                      ) 
+                values
+                <foreach collection="list" item="item" index="index" separator="," >  
+                     (
+                      #{item.pubDate}
+                      ,#{item.salaryUp}
+                      ,#{item.salaryDown}
+                      ,#{item.jobAddrId}
+                      ,#{item.eduId}
+                      ,#{item.jobExpTime}
+                      ,#{item.jobDetail}
+                      ,#{item.jobRequest}
+                      ,#{item.gongsiName}
+                      ,#{item.jobUrl}
+                      ,#{item.gongsiUrl}
+                      ,#{item.scanDate}
+                      )
+               </foreach>  
+    </insert>
+     <delete id ="deleteJobInfo" parameterType="java.util.Map">
+         delete from td_job_info where 1=1
+     </delete>
+</mapper>
+	
