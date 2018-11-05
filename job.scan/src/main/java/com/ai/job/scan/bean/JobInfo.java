@@ -14,7 +14,7 @@ public class JobInfo {
 	private String gongsiName;
 	private String jobUrl;
 	private String gongsiUrl;
-	
+	private String nickName;
 	
 	
 	public String getScanDate() {
