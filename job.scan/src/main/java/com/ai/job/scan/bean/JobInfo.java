@@ -14,6 +14,9 @@ public class JobInfo {
 	private String gongsiName;
 	private String jobUrl;
 	private String gongsiUrl;
+	
+	
+	
 	public String getScanDate() {
 		return scanDate;
 	}
